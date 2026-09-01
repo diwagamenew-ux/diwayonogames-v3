@@ -1,0 +1,56 @@
+-- Expand per-content SEO controls without deleting existing data.
+ALTER TABLE categories
+  ADD COLUMN IF NOT EXISTS h1 text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS focus_keyword text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS canonical_url text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS og_title text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS og_description text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS og_image text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS twitter_title text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS twitter_description text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS twitter_image text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS no_follow boolean NOT NULL DEFAULT false;
+
+ALTER TABLE games
+  ADD COLUMN IF NOT EXISTS h1 text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS secondary_keywords text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS og_title text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS og_description text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS og_image text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS twitter_title text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS twitter_description text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS twitter_image text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS no_follow boolean NOT NULL DEFAULT false;
+
+ALTER TABLE posts
+  ADD COLUMN IF NOT EXISTS h1 text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS secondary_keywords text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS canonical_url text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS og_title text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS og_description text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS og_image text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS twitter_title text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS twitter_description text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS twitter_image text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS no_follow boolean NOT NULL DEFAULT false;
+
+ALTER TABLE pages
+  ADD COLUMN IF NOT EXISTS h1 text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS focus_keyword text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS canonical_url text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS og_title text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS og_description text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS og_image text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS twitter_title text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS twitter_description text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS twitter_image text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS no_follow boolean NOT NULL DEFAULT false;
+
+ALTER TABLE tags
+  ADD COLUMN IF NOT EXISTS meta_title text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS meta_description text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS h1 text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS focus_keyword text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS canonical_url text NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS no_index boolean NOT NULL DEFAULT true,
+  ADD COLUMN IF NOT EXISTS no_follow boolean NOT NULL DEFAULT false;

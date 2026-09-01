@@ -1,0 +1,55 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1784563562684,
+      "tag": "0000_blushing_bloodscream",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1784967992496,
+      "tag": "0001_silky_nico_minoru",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1785181258480,
+      "tag": "0002_add_performance_indexes",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1786000000000,
+      "tag": "0003_add_editorial_rating",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1787000000000,
+      "tag": "0004_add_noindex_controls",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1787588708956,
+      "tag": "0005_expand_seo_controls",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1788000000000,
+      "tag": "0006_blog_quality_features",
+      "breakpoints": true
+    }
+  ]
+}

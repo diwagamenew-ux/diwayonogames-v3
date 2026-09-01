@@ -1,0 +1,455 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #07060d;
+  --panel: #0e0b1a;
+  --panel2: #161129;
+  --ink: #f5f2ff;
+  --muted: #a198c7;
+  --line: rgba(167, 139, 250, 0.16);
+  --primary: #8b5cf6;
+  --primary2: #6d28d9;
+  --accent: #f5b942;
+  --gold2: #ffe08a;
+  --gold3: #b97f16;
+}
+
+.light {
+  --bg: #f4f2fb;
+  --panel: #ffffff;
+  --panel2: #efeaf9;
+  --ink: #17122b;
+  --muted: #5d5680;
+  --line: rgba(109, 40, 217, 0.16);
+  /* Darken the gold stops so gold-text / text-gold2 / chip-hover / table
+     headers stay readable on white. Without this, pale yellow on white
+     looks like the content is missing — which is exactly what made the
+     admin panel look "broken" in light mode. */
+  --gold2: #b4791a;
+  --gold3: #8a5c09;
+}
+
+@theme inline {
+  --color-base: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel2: var(--panel2);
+  --color-ink: var(--ink);
+  --color-mute: var(--muted);
+  --color-line: var(--line);
+  --color-primary: var(--primary);
+  --color-primary2: var(--primary2);
+  --color-accent: var(--accent);
+  --color-gold2: var(--gold2);
+  --color-gold3: var(--gold3);
+  /* Wired to the CSS variables emitted by next/font/google in the root
+     layout (see src/app/layout.tsx). Fallbacks cover the brief window
+     before the self-hosted @font-face rules apply. */
+  --font-display: var(--font-bebas, "Bebas Neue", "Arial Narrow", sans-serif);
+  --font-body: var(--font-outfit, "Outfit", "Segoe UI", system-ui, sans-serif);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 80%, transparent);
+  color: #17112b;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--panel);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary), var(--primary2));
+  border-radius: 99px;
+}
+
+/* ------------------------------- Typography ------------------------------ */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+}
+
+.gold-text {
+  background: linear-gradient(180deg, var(--gold2) 10%, var(--accent) 55%, var(--gold3) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.violet-text {
+  background: linear-gradient(135deg, #c4b5fd, var(--primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  letter-spacing: 0.05em;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0.4rem;
+}
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 56%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+/* -------------------------------- Buttons -------------------------------- */
+.btn-gold {
+  background: linear-gradient(180deg, var(--gold2), var(--accent) 45%, #d4941e);
+  color: #241703;
+  font-weight: 700;
+  border-radius: 0.9rem;
+  box-shadow:
+    0 10px 26px -8px color-mix(in srgb, var(--accent) 55%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  filter: saturate(1.1);
+  box-shadow:
+    0 16px 34px -8px color-mix(in srgb, var(--accent) 65%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.btn-gold:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-violet {
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0.9rem;
+  box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--primary) 70%, transparent);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.btn-violet:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -10px color-mix(in srgb, var(--primary) 80%, transparent);
+}
+
+/* Telegram brand blue */
+.btn-telegram {
+  background: linear-gradient(160deg, #37aee2, #229ed9 45%, #187bb1);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 0.9rem;
+  box-shadow:
+    0 10px 26px -8px rgba(34, 158, 217, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+.btn-telegram:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.07);
+  box-shadow:
+    0 16px 34px -8px rgba(34, 158, 217, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.btn-telegram:active {
+  transform: translateY(0) scale(0.98);
+}
+.text-telegram {
+  color: #229ed9;
+}
+
+.btn-ghost {
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--panel) 60%, transparent);
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+.btn-ghost:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+  background: var(--panel2);
+  transform: translateY(-1px);
+}
+
+/* Header-only icon buttons (theme toggle, mobile menu). Unlike .btn-ghost
+   (translucent, for use over solid cards) these need a fully OPAQUE
+   background at all times, because the header itself can be translucent
+   at the top of the page — a translucent button on a translucent header
+   would let scrolled content show through both layers and wash out the
+   icon, which is exactly the "disappearing" look this fixes. */
+.header-icon-btn {
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: var(--panel2);
+  transition: border-color 0.16s ease, background 0.16s ease, transform 0.16s ease;
+}
+.header-icon-btn:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+  background: var(--panel);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------- Cards --------------------------------- */
+.card {
+  background:
+    radial-gradient(140% 120% at 0% 0%, color-mix(in srgb, var(--primary) 10%, transparent), transparent 55%),
+    var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  box-shadow:
+    0 20px 44px -18px color-mix(in srgb, var(--primary) 45%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.card-gold {
+  background:
+    radial-gradient(130% 120% at 50% -10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%),
+    linear-gradient(180deg, #151020, #0c0a14);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-radius: 1.25rem;
+}
+.light .card-gold {
+  background: linear-gradient(180deg, #ffffff, #f6f1e7);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+
+/* In light mode the dark-mode gold-frame's black ring reads as a glitch on
+   every icon. Replace it with a warm amber ring + a soft drop shadow. */
+.light .gold-frame {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent),
+    0 6px 18px -8px color-mix(in srgb, var(--accent) 45%, transparent),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+/* violet-text's pale top stop is invisible on white cards; use solid deep
+   violet stops in light mode so "SEO" / accent headings stay legible. */
+.light .violet-text {
+  background: linear-gradient(135deg, var(--primary2), var(--primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Slightly stronger card border + shadow in light mode so cards read as
+   cards on the near-white page background (the dark-mode border is too
+   subtle on white). */
+.light .card {
+  box-shadow: 0 1px 2px rgba(23, 18, 43, 0.04), 0 8px 24px -16px rgba(23, 18, 43, 0.12);
+}
+
+/* The admin sidebar's active item uses text-gold2 on a pale primary tint;
+   in light mode make the tint a touch stronger so the active row reads. */
+.light aside .bg-gradient-to-r {
+  background-image: linear-gradient(to right, color-mix(in srgb, var(--primary) 18%, transparent), transparent);
+}
+
+.gold-frame {
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.6),
+    0 0 24px -4px color-mix(in srgb, var(--accent) 45%, transparent),
+    inset 0 0 18px -8px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.chip {
+  border: 1px solid var(--line);
+  background: var(--panel2);
+  border-radius: 999px;
+  transition: all 0.16s ease;
+}
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--gold2);
+  transform: translateY(-1px);
+}
+
+/* ------------------------------- Animations ------------------------------ */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-14px) rotate(2deg); }
+}
+.animate-floaty { animation: floaty 6s ease-in-out infinite; }
+.animate-floaty-slow { animation: floaty 9s ease-in-out infinite; }
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 22px -4px color-mix(in srgb, var(--accent) 60%, transparent); }
+  50% { box-shadow: 0 0 44px -2px color-mix(in srgb, var(--accent) 85%, transparent); }
+}
+.animate-glow { animation: pulse-glow 2.6s ease-in-out infinite; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 30s linear infinite; }
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+.shimmer-line {
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 55%, transparent), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3.2s linear infinite;
+}
+
+/* ------------------------------- Rich text ------------------------------- */
+.rich-html {
+  line-height: 1.85;
+  color: color-mix(in srgb, var(--ink) 88%, transparent);
+  font-size: 1.02rem;
+}
+.rich-html h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: 0.04em;
+  margin: 2rem 0 0.8rem;
+  color: var(--gold2);
+}
+.rich-html h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
+  margin: 1.6rem 0 0.6rem;
+  color: #c4b5fd;
+}
+.rich-html h4 { font-weight: 700; margin: 1.2rem 0 0.5rem; }
+.rich-html p { margin: 0.9rem 0; }
+.rich-html ul, .rich-html ol { margin: 0.9rem 0 0.9rem 1.4rem; }
+.rich-html ul { list-style: disc; }
+.rich-html ol { list-style: decimal; }
+.rich-html li { margin: 0.35rem 0; }
+.rich-html a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.rich-html a:hover { color: var(--gold2); }
+.rich-html img { border-radius: 1rem; margin: 1.2rem auto; border: 1px solid var(--line); }
+.rich-html blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.4rem 0 0.4rem 1rem;
+  margin: 1.2rem 0;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  border-radius: 0 0.75rem 0.75rem 0;
+}
+.rich-html table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.95rem; }
+.rich-html th, .rich-html td { border: 1px solid var(--line); padding: 0.5rem 0.75rem; }
+.rich-html th { background: var(--panel2); color: var(--gold2); text-align: left; }
+.rich-html strong { color: var(--gold2); }
+.light .rich-html strong { color: #8a5c09; font-weight: 700; }
+.light .rich-html h2 { color: #8a5c09; }
+.light .rich-html h3 { color: var(--primary2); }
+
+/* --------------------------------- Inputs -------------------------------- */
+.input {
+  width: 100%;
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.input::placeholder { color: color-mix(in srgb, var(--muted) 75%, transparent); }
+
+.label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+/* --------------------------------- Tables -------------------------------- */
+.admin-table th {
+  text-align: left;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+.admin-table td {
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+  font-size: 0.9rem;
+}
+.admin-table tr:hover td {
+  background: color-mix(in srgb, var(--primary) 5%, transparent);
+}
+
+.noise-bg {
+  background-image:
+    radial-gradient(60% 50% at 15% 0%, color-mix(in srgb, var(--primary) 16%, transparent), transparent 70%),
+    radial-gradient(50% 40% at 90% 10%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%);
+}
+.light .noise-bg {
+  background-image:
+    radial-gradient(60% 50% at 15% 0%, rgba(139, 92, 246, 0.10), transparent 70%),
+    radial-gradient(50% 40% at 90% 10%, rgba(245, 185, 66, 0.12), transparent 70%);
+}
+
+/* Hide the public chrome (header/footer/floating/cookie/popup) on /admin
+   routes. The class is set by the inline boot script in the root layout
+   before first paint, so there is no flash and the server never has to
+   know the pathname (which would force every page dynamic). Crawlers
+   without JS still see the chrome on /admin, but /admin is disallowed
+   in robots.txt so it has no SEO impact. */
+.is-admin [data-public-chrome] {
+  display: none !important;
+}
+
+/* Scroll-reveal replacement for the old framer-motion MotionReveal. The
+   element starts invisible + translated; an IntersectionObserver in the
+   client component flips data-reveal to "in" once visible, and the CSS
+   transition runs on the compositor thread (no main-thread work, no
+   layout shift). Honours prefers-reduced-motion via the JS side. */
+.motion-reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.motion-reveal[data-reveal="in"] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal,
+  .motion-reveal[data-reveal="in"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
